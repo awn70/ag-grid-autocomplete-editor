@@ -23,6 +23,7 @@
     "build:watch": "webpack --config config/webpack.prod.js --progress --profile --watch",
     "clean": "rm -rf **/*.map **/*.d.ts *.d.ts *.map ag-grid-autocomplete-editor.js dist/",
     "test": "npm run clean && npm run build && npx cypress run",
+    "test:visible": "npm run clean && npm run build && npx cypress run --headed",
     "test:watch": "npm run clean && npm run build:watch & npx cypress open",
     "lint": "prettier --write . && eslint .",
     "lint:fix": "prettier --write . && eslint --fix .",
@@ -63,7 +64,7 @@
     "select"
   ],
   "peerDependencies": {
-    "@ag-grid-community/core": "^25.x"
+    "@ag-grid-community/core": "^26.x"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.1",
@@ -78,7 +79,7 @@
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
     "ag-grid-autocomplete-editor": "file:./",
-    "ag-grid-community": "^25.1.0",
+    "ag-grid-community": "^26.1.0",
     "autoprefixer": "10.2.5",
     "css-loader": "5.2.2",
     "cypress": "^7.1.0",
