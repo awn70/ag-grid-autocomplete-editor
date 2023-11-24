@@ -107,7 +107,7 @@ export default class AutocompleteSelectCellEditor extends PopupComponent impleme
   }
 
   private static getStartValue(parameters: IAutocompleteSelectCellEditorParameters<AutocompleteSelectCellEditor>) {
-    const keyPressBackspaceOrDelete = parameters.keyPress === KEY_BACKSPACE || parameters.keyPress === KEY_DELETE
+    const keyPressBackspaceOrDelete = parameters.eventKey === 'Backspace' || parameters.eventKey === 'Delete'
     if (keyPressBackspaceOrDelete) {
       return ''
     }
