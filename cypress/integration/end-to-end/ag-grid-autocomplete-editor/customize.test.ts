@@ -68,7 +68,7 @@ describe('ag-grid-autocomplete-editor end-to-end customization option tests', ()
     cy.get('div.ag-cell-editor-autocomplete-wrapper > .ag-cell-editor-autocomplete-input').should('not.exist')
     // Input should have been selected and sent to ag-grid
     cy.get('.ag-row-first > .ag-cell ').contains('Kenya Gallagher').should('exist')
-    cy.get('.ag-row-first > .ag-cell ').type('{del}').type('{enter}')
+    cy.get('.ag-row-first > .ag-cell ').type('{del}') // TODO ? .type('{enter}') -> suppressKeyboardEvent
     cy.get('.ag-row-first > .ag-cell ').contains('Kenya Gallagher').should('exist')
   })
   it('should customize autocomplete items according to renderGroup function', function () {

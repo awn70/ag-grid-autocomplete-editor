@@ -101,9 +101,13 @@ export default class AutocompleteSelectCellEditor extends PopupComponent impleme
     }
   }
 
-  private static suppressKeyboardEvent(parameters: SuppressKeyboardEventParams): boolean {
+  private suppressKeyboardEvent(parameters: SuppressKeyboardEventParams): boolean {
     const { keyCode } = parameters.event
-    return parameters.editing && KeysHandled.has(keyCode)
+    if( this.required && !parameters.editing && ( keyCode === KEY_BACKSPACE || keyCode === KEY_DELETE )) {
+      return true
+    } else {
+      return parameters.editing && KeysHandled.has( keyCode )
+    }
   }
 
   private static getStartValue(parameters: IAutocompleteSelectCellEditorParameters<AutocompleteSelectCellEditor>) {
@@ -182,7 +186,8 @@ export default class AutocompleteSelectCellEditor extends PopupComponent impleme
     }
     if (!parameters.colDef.suppressKeyboardEvent) {
       // eslint-disable-next-line no-param-reassign
-      parameters.colDef.suppressKeyboardEvent = AutocompleteSelectCellEditor.suppressKeyboardEvent
+      // parameters.colDef.suppressKeyboardEvent = this.suppressKeyboardEvent
+      parameters.colDef.suppressKeyboardEvent = ( params ) => { return this.suppressKeyboardEvent( params ) }
     }
   }
 
