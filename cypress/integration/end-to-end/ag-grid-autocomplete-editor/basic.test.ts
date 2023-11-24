@@ -559,6 +559,7 @@ describe('ag-grid-autocomplete-editor end-to-end basic tests', () => {
         rowData: rowDatas,
         suppressScrollOnNewData: false,
         suppressBrowserResizeObserver: true,
+        columnHoverHighlight: true,
       }
       new Grid(<HTMLElement>indexQueryElement.get(0), gridOptions)
     })
@@ -567,7 +568,7 @@ describe('ag-grid-autocomplete-editor end-to-end basic tests', () => {
     cy.get('[row-index="0"] > [aria-colindex="1"]').contains('Kelley Santana').should('not.exist')
     // Start the edition
     cy.get('[row-index="0"] > [aria-colindex="1"]').type('{enter}').type('Ke')
-    cy.get('.autocomplete.ag-cell-editor-autocomplete').should('exist')
+    cy.get('.autocomplete.ag-cell-editor-autocomplete').should('exist') // .then( x => {debugger})
     // Should select the first element and hit enter it to select
     cy.get('.ag-column-hover > .ag-wrapper > .ag-input-field-input').focus().realPress('Tab')
     // input should have been closed
@@ -630,6 +631,7 @@ describe('ag-grid-autocomplete-editor end-to-end basic tests', () => {
         rowData: rowDatas,
         suppressScrollOnNewData: false,
         suppressBrowserResizeObserver: true,
+        columnHoverHighlight: true,
       }
       new Grid(<HTMLElement>indexQueryElement.get(0), gridOptions)
     })
