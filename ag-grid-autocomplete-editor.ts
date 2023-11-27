@@ -185,19 +185,23 @@ export default class AutocompleteSelectCellEditor extends PopupComponent impleme
       this.required = true
     }
     if (!parameters.colDef.suppressKeyboardEvent) {
-      // eslint-disable-next-line no-param-reassign
       // parameters.colDef.suppressKeyboardEvent = this.suppressKeyboardEvent
-      parameters.colDef.suppressKeyboardEvent = ( params ) => { return this.suppressKeyboardEvent( params ) }
+      // eslint-disable-next-line no-param-reassign
+      parameters.colDef.suppressKeyboardEvent = (supParameters) => {
+        return this.suppressKeyboardEvent(supParameters)
+      }
     }
   }
 
   handleTabEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode || 0
-    if (keyCode === KEY_TAB && this.gridOptionsWrapper) {
+    if (keyCode === KEY_TAB && this.gridOptionsService) {
       if (event.shiftKey) {
-        this.gridOptionsWrapper.getApi()!.tabToPreviousCell()
+        // this.gridOptionsWrapper.getApi()!.tabToPreviousCell()
+        this.gridOptionsService.api.tabToPreviousCell()
       } else {
-        this.gridOptionsWrapper.getApi()!.tabToNextCell()
+        // this.gridOptionsWrapper.getApi()!.tabToNextCell()
+        this.gridOptionsService.api.tabToNextCell()
       }
     } else {
       this.destroy()
